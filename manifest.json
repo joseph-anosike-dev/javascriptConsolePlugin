@@ -1,0 +1,9 @@
+{
+  "id": "js-console",
+  "name": "JS Console",
+  "version": "1.0.0",
+  "minAppVersion": "1.4.0",
+  "description": "A Chrome DevTools-style interactive JavaScript console inside Obsidian.",
+  "author": "Joseph Anosike",
+  "isDesktopOnly": false
+}

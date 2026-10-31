@@ -1,0 +1,62 @@
+.jsc { display: flex; flex-direction: column; height: 100%; padding: 0 !important; font-family: var(--font-monospace); font-size: var(--font-smaller); }
+
+/* toolbar */
+.jsc-bar { display: flex; align-items: center; gap: 8px; padding: 2px 6px; border-bottom: 1px solid var(--background-modifier-border); }
+.jsc-filters { display: flex; gap: 2px; }
+.jsc-filter { background: none; box-shadow: none; border: none; height: auto; padding: 2px 8px; font-size: var(--font-smaller); color: var(--text-muted); border-radius: var(--radius-s); }
+.jsc-filter.active { color: var(--text-normal); background: var(--background-modifier-hover); }
+
+/* output */
+.jsc-out { flex: 1; overflow: auto; user-select: text; -webkit-user-select: text; }
+.jsc-row { display: flex; gap: 6px; padding: 2px 8px; line-height: 1.45; border-bottom: 1px solid var(--background-modifier-border); }
+.jsc-gutter { flex: none; width: 12px; text-align: center; color: var(--text-faint); }
+.jsc-msg { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: 0 .75em; white-space: pre-wrap; word-break: break-word; }
+.jsc-input .jsc-gutter { color: var(--interactive-accent); }
+.jsc-code { margin: 0; padding: 0; background: none; font: inherit; white-space: pre-wrap; color: var(--text-normal); }
+.jsc-sys { color: var(--text-faint); font-style: italic; }
+.jsc-warn { background: rgba(var(--color-yellow-rgb), .12); color: var(--color-yellow); }
+.jsc-error { background: rgba(var(--color-red-rgb), .10); color: var(--color-red); }
+.jsc-errtext { margin: 0; padding: 0; background: none; color: inherit; font: inherit; white-space: pre-wrap; }
+
+/* values */
+.jsc-head { display: flex; gap: .25em; align-items: baseline; }
+.jsc-head:has(.jsc-arrow) { cursor: pointer; }
+.jsc-arrow { display: inline-block; width: 1em; flex: none; color: var(--text-faint); transition: transform .08s; }
+.jsc-node.open > .jsc-head > .jsc-arrow { transform: rotate(90deg); }
+.jsc-body { margin-left: 1.1em; padding-left: .5em; border-left: 1px dotted var(--background-modifier-border-hover); }
+.jsc-node:not(.open) > .jsc-body { display: none; }
+.jsc-key { color: var(--color-purple); }
+.jsc-str { color: var(--color-orange); }
+.jsc-num { color: var(--color-blue); }
+.jsc-nul { color: var(--text-faint); }
+.jsc-sym { color: var(--color-pink); }
+.jsc-fn { font-style: italic; color: var(--color-green); }
+.jsc-obj { color: var(--text-normal); }
+.jsc-more { color: var(--text-faint); }
+.jsc-promise { display: flex; flex-wrap: wrap; align-items: baseline; }
+.jsc-promise .jsc-node { display: inline-block; vertical-align: top; }
+.jsc-promise.rejected { color: var(--color-red); }
+
+/* console.table / group */
+.jsc-table { border-collapse: collapse; margin: 2px 0; font-size: inherit; }
+.jsc-table th, .jsc-table td { border: 1px solid var(--background-modifier-border); padding: 1px 8px; text-align: left; white-space: pre; }
+.jsc-table th { color: var(--text-muted); font-weight: 600; background: var(--background-secondary); }
+.jsc-ghead { cursor: pointer; font-weight: 600; }
+.jsc-gbody { margin-left: 14px; }
+.jsc-group.collapsed > .jsc-gbody { display: none; }
+
+/* level filters */
+.jsc-out[data-f="error"] .jsc-row:is(.jsc-log, .jsc-info, .jsc-warn, .jsc-debug),
+.jsc-out[data-f="warn"]  .jsc-row:is(.jsc-log, .jsc-info, .jsc-error, .jsc-debug),
+.jsc-out[data-f="info"]  .jsc-row:is(.jsc-log, .jsc-warn, .jsc-error, .jsc-debug),
+.jsc-out[data-f="log"]   .jsc-row:is(.jsc-info, .jsc-warn, .jsc-error, .jsc-debug) { display: none; }
+
+/* input */
+.jsc-in { display: flex; gap: 6px; align-items: flex-start; padding: 6px 8px; border-top: 1px solid var(--background-modifier-border); background: var(--background-secondary); }
+.jsc-in .jsc-gutter { color: var(--interactive-accent); line-height: 1.6; }
+.jsc-in textarea { flex: 1; resize: none; min-height: 1.6em; max-height: 200px; padding: 0; background: transparent; border: none !important; box-shadow: none !important; outline: none; font: inherit; line-height: 1.6; color: var(--text-normal); }
+
+/* Mobile: lift the input above the bottom navbar */
+.is-mobile .jsc-in {
+  padding-bottom: calc(var(--mobile-navbar-height, 80px) + env(safe-area-inset-bottom, 0px) + 12px);
+}
